@@ -116,7 +116,7 @@ const otherServices = [
   },
   {
     title: 'INTERNATIONAL TRADE FACILITATION AND DEVELOPMENT',
-    img: '/images/servicess/international-trade.jpeg',
+    img: '/images/servicess/International-trade.jpeg',
     alt: 'International trade and development',
     desc: 'Trade facilitation involves a wide range of activities centered on lowering trade transaction costs for global commerce firms. These costs include the price of moving freight from the factory to final destinations. Firms must manage border clearance procedures and pay trade services fees, among many other steps after goods and services are produced. As such, trade facilitation involves much more than trucking goods across national borders or shipping a package by sea transport. As a consulting firm, it is our job to run by taking over these operations, leaving companies to focus on other more imperative and tenacious factors of running their business.',
   },
