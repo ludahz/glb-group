@@ -2,7 +2,7 @@ export const foodItems = [
   {
     id: 1,
     title: 'Tea',
-    img: '/images/product/dilmah.jpg',
+    img: '/images/product/dilmah.png',
   },
   {
     id: 1,
@@ -12,7 +12,7 @@ export const foodItems = [
   {
     id: 1,
     title: 'Juice',
-    img: '/images/product/npv-juice.jpeg',
+    img: '/images/product/npv.png',
   },
   {
     id: 1,
