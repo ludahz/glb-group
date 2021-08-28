@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 import theme from '../styles/themes'
 
-export const BannerSection = styled.div``
+export const BannerSection = styled.div`
+  font-family: 'Lato', sans-serif;
+`
 
 export const BannerContainer = styled.div``
 
@@ -39,7 +41,7 @@ export const Info = styled.div`
     margin-bottom: 8px;
   }
   p {
-    font-weight: 100;
+    font-weight: 300;
     font-size: clamp(1rem, 2vw, 1.5rem);
     margin-bottom: 1.8rem;
     color: #dee0e3;

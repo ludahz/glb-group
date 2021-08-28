@@ -5,6 +5,7 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { useState } from 'react'
 
 export const NavBarContainer = styled.div`
+  font-family: 'Lato', sans-serif;
   position: sticky;
   top: 0;
   width: 100%;
