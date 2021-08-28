@@ -7,7 +7,7 @@ export const foodItems = [
   {
     id: 1,
     title: 'Coffee',
-    img: '/images/product/coffee-beans.jpeg',
+    img: '/images/product/coffee-cup.jpeg',
   },
   {
     id: 1,
