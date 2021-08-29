@@ -12,7 +12,9 @@ export const NavBarContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background: rgb(15, 35, 52, 0.9);
+  /* background: rgb(0, 49, 83, 0.7); */
+  background: ${theme.colors.backgroundOxfordBlue};
+
   color: #000;
   padding: 5px 0;
   height: 65px;

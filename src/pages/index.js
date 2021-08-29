@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Banner from '../components/Banner'
 import Services from '../components/Services'
 import Contact from '../components/Contact'
+import AboutUs from '../components/AboutUs'
+import Products from '../components/Products'
 
 export default function Home() {
   return (
@@ -15,6 +17,8 @@ export default function Home() {
 
       <Banner />
       <Services />
+      <AboutUs />
+      <Products />
       <Contact />
     </div>
   )

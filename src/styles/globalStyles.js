@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
   padding: 0;
 }
 html{
-  background: #F5F4F0;
+  background: ${theme.colors.backgroundLight};
   display:block;
   height: 100%;
   max-width: calc(100vw - 10%);

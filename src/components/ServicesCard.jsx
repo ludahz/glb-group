@@ -10,7 +10,7 @@ export const Card = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 1rem 10px;
+  margin: 0 10px;
   padding: 0.3rem;
 
   h3 {
@@ -43,7 +43,7 @@ export const Hex = styled.div`
 `
 export const IconDiv = styled.div`
   position: absolute;
-  color: white;
+  color: #000;
 `
 
 export const DescContainer = styled.div`

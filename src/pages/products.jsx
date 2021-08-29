@@ -61,6 +61,9 @@ export const ProductsCategory = styled.div`
 export const ProductHeading = styled.h3`
   font-size: 1.5rem;
   margin-left: 4rem;
+  @media ${theme.breakpoints.sd} {
+    margin-left: 10px;
+  }
 `
 
 export const ProductDisplay = styled.div`
