@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'styled-components'
+import { FormspreeProvider } from '@formspree/react';
 import GlobalStyle from '../styles/globalStyles'
 import theme from '../styles/themes'
 import Head from 'next/head'
