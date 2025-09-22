@@ -1,73 +1,52 @@
-import styled from 'styled-components'
 import ServicesCard from './ServicesCard'
 import { AiOutlineImport, AiOutlineExport } from 'react-icons/ai'
 import { GrServices } from 'react-icons/gr'
-import theme from '../styles/themes'
 
-export const ServicesSection = styled.div`
-  background: ${theme.colors.backgroundLight};
-`
-export const ServicesTitle = styled.h1`
-  font-size: 1.4rem;
-  color: #000;
-  margin-bottom: 1rem;
-`
-
-export const ServicesContainer = styled.div`
-  min-height: 380px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem 0;
-`
-
-export const ServiceCardContainer = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  width: 100%;
-`
-
-export const HexContainer = styled.div`
-  width: 300px;
-  position: absolute;
-`
 const servicesData = [
-  {
-    icon: <AiOutlineImport size='2rem' />,
-    title: 'IMPORT',
-    desc: 'We import food, electronics, and machinery',
-  },
-  {
-    icon: <AiOutlineExport size='2rem' />,
-    title: 'EXPORT',
-    desc: 'We export gold, cotton, dried hibiscus',
-  },
-  {
-    icon: <GrServices size='2rem' />,
-    title: 'OTHER SERVICES',
-    desc: 'Business consultancy,trade facilitation and other services ',
-  },
+	{
+		icon: <AiOutlineImport size='3rem' />,
+		title: 'IMPORT',
+		desc: 'We import food, electronics, and machinery from global markets to meet local demand.',
+	},
+	{
+		icon: <AiOutlineExport size='3rem' />,
+		title: 'EXPORT',
+		desc: 'We export gold, cotton, dried hibiscus and other commodities to international markets.',
+	},
+	{
+		icon: <GrServices size='3rem' />,
+		title: 'OTHER SERVICES',
+		desc: 'Business consultancy, trade facilitation, and comprehensive support services.',
+	},
 ]
+
 const Services = () => {
-  return (
-    <ServicesSection>
-      <ServicesContainer>
-        <ServicesTitle>What We Do</ServicesTitle>
-        <ServiceCardContainer>
-          {servicesData.map((item, i) => (
-            <ServicesCard
-              key={i}
-              icon={item.icon}
-              title={item.title}
-              desc={item.desc}
-            />
-          ))}
-        </ServiceCardContainer>
-      </ServicesContainer>
-    </ServicesSection>
-  )
+	return (
+		<section className='section-padding bg-gray-100'>
+			<div className='container-custom'>
+				<div className='text-center mb-16'>
+					<h2 className='text-4xl md:text-5xl font-bold text-gray-800 mb-4'>
+						What We Do
+					</h2>
+					<div className='accent-line mx-auto'></div>
+					<p className='text-gray-600 text-lg mt-6 max-w-2xl mx-auto'>
+						Your trusted partner in international trade and business development
+					</p>
+				</div>
+
+				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+					{servicesData.map((item, i) => (
+						<ServicesCard
+							key={i}
+							icon={item.icon}
+							title={item.title}
+							desc={item.desc}
+						/>
+					))}
+				</div>
+			</div>
+		</section>
+	)
 }
 
 export default Services

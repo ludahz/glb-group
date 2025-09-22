@@ -1,9 +1,7 @@
-import { ThemeProvider } from 'styled-components'
 import { FormspreeProvider } from '@formspree/react';
-import GlobalStyle from '../styles/globalStyles'
-import theme from '../styles/themes'
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -33,10 +31,7 @@ function MyApp({ Component, pageProps }) {
           <meta name='theme-color' content='#ffffff' />
           <title>GL-B GROUP SARL</title>
         </Head>
-        <GlobalStyle />
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
+        <Component {...pageProps} />
       </Layout>
     </>
   )

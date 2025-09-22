@@ -1,161 +1,199 @@
-import styled from 'styled-components'
-import LocationOnIcon from '@material-ui/icons/LocationOn'
-import PhoneIcon from '@material-ui/icons/Phone'
-import MailOutlineIcon from '@material-ui/icons/MailOutline'
-import theme from '../styles/themes'
-
-export const ContactContainer = styled.div`
-  color: #fff;
-`
-
-export const BgImage = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.3) 0%,
-      rgba(0, 0, 0, 0.5) 35%,
-      rgba(0, 0, 0, 0.6) 100%
-    ),
-    url('images/banner/World.jpeg') no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  min-height: 380px;
-  padding: 1rem 0;
-  position: relative;
-`
-
-export const SectionsContainer = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  width: 100%;
-  padding: 10px 20px;
-`
-
-export const LeftSection = styled.div`
-  width: 50%;
-  padding: 10px 1rem;
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
-`
-export const RightSection = styled.div`
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  padding: 10px 1rem;
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
-`
-export const ContactInfo = styled.div`
-  padding: 1rem 1rem;
-  background: rgb(0, 0, 0, 0.6);
-`
-export const InfoDiv = styled.div`
-  display: flex;
-  padding: 1rem 0;
-  p {
-    margin-left: 10px;
-  }
-`
-
-export const Icon = styled.div`
-  color: ${theme.colors.compliment};
-`
-
-export const FormContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 0;
-  background: rgb(0, 0, 0, 0.6);
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    input {
-      height: 35px;
-      outline: none;
-      border-width: 0, 0, 2px, 0;
-      margin: 8px 0 1rem 0;
-      padding: 0 5px;
-      font-size: 1rem;
-    }
-    label {
-      color: ${theme.colors.compliment};
-    }
-  }
-`
-export const Button = styled.button`
-  font-weight: 800;
-  font-size: 1.2rem;
-  padding: 0.5rem;
-  margin-top: 1rem;
-  width: 100px;
-  background: #000;
-  color: ${theme.colors.compliment};
-  border: solid 2px ${theme.colors.compliment};
-  border-radius: 5px;
-  transition: ease 0.3s;
-  cursor: pointer;
-  :hover {
-    background: transparent;
-  }
-`
+import { useState } from 'react'
+import {
+	IoLocationOutline,
+	IoCallOutline,
+	IoMailOutline,
+} from 'react-icons/io5'
 
 const Contact = () => {
-  return (
-    <ContactContainer id='contact'>
-      <BgImage>
-        <h1>Contact us</h1>
-        <SectionsContainer>
-          <LeftSection>
-            {/* <h5>Contact Info</h5> */}
-            <ContactInfo>
-              <InfoDiv>
-                <Icon>
-                  <LocationOnIcon />
-                </Icon>
-                <p>sotuba aci, bamako mali</p>
-              </InfoDiv>
-              <InfoDiv>
-                <Icon>
-                  <PhoneIcon />
-                </Icon>
-                <p>0022375450086</p>
-              </InfoDiv>
-              <InfoDiv>
-                <Icon>
-                  <MailOutlineIcon />
-                </Icon>
-                <p>info@glbgroup10.com</p>
-              </InfoDiv>
-            </ContactInfo>
-          </LeftSection>
-          <RightSection>
-            {/* <h5>Contact Form</h5> */}
-            <FormContainer>
-              <form action=''>
-                <label htmlFor='name'>Name</label>
-                <input type='text' placeholder='Your Name' />
-                <label htmlFor='email'>E-mail</label>
-                <input type='text' placeholder='email@example.com' />
-              </form>
-              <Button>Send</Button>
-            </FormContainer>
-          </RightSection>
-        </SectionsContainer>
-      </BgImage>
-    </ContactContainer>
-  )
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		subject: '',
+		message: '',
+	})
+
+	const handleChange = (e) => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value,
+		})
+	}
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		// Handle form submission here
+		console.log('Form submitted:', formData)
+		// Reset form
+		setFormData({ name: '', email: '', subject: '', message: '' })
+	}
+
+	return (
+		<section
+			id='contact'
+			className='section-padding relative'
+			style={{
+				backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 35%, rgba(0, 0, 0, 0.7) 100%), url('/images/banner/World.jpeg')`,
+				backgroundSize: 'cover',
+				backgroundPosition: 'center',
+				backgroundAttachment: 'fixed',
+			}}
+		>
+			<div className='container-custom'>
+				<div className='text-center mb-16'>
+					<h2 className='text-4xl md:text-5xl font-bold text-white mb-4'>
+						Contact Us
+					</h2>
+					<div className='w-24 h-1 bg-primary-600 mx-auto rounded-full'></div>
+					<p className='text-gray-200 text-lg mt-6 max-w-2xl mx-auto'>
+						Get in touch with us for any inquiries or business opportunities
+					</p>
+				</div>
+
+				<div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
+					{/* Contact Information */}
+					<div className='space-y-8'>
+						<div className='bg-black bg-opacity-60 backdrop-blur-sm rounded-2xl p-8'>
+							<h3 className='text-2xl font-bold text-white mb-6'>
+								Get In Touch
+							</h3>
+
+							<div className='space-y-6'>
+								<div className='flex items-start space-x-4'>
+									<div className='w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0'>
+										<IoLocationOutline className='text-white text-xl' />
+									</div>
+									<div>
+										<h4 className='text-white font-semibold mb-1'>Address</h4>
+										<p className='text-gray-300'>Sotuba ACI, Bamako, Mali</p>
+									</div>
+								</div>
+
+								<div className='flex items-start space-x-4'>
+									<div className='w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0'>
+										<IoCallOutline className='text-white text-xl' />
+									</div>
+									<div>
+										<h4 className='text-white font-semibold mb-1'>Phone</h4>
+										<p className='text-gray-300'>+22375450086</p>
+									</div>
+								</div>
+
+								<div className='flex items-start space-x-4'>
+									<div className='w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0'>
+										<IoMailOutline className='text-white text-xl' />
+									</div>
+									<div>
+										<h4 className='text-white font-semibold mb-1'>Email</h4>
+										<p className='text-gray-300'>
+											<a
+												href='mailto:glbgroup10@gmail.com'
+												className='hover:text-primary-300'
+											>
+												glbgroup10@gmail.com
+											</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					{/* Contact Form */}
+					<div className='bg-black bg-opacity-60 backdrop-blur-sm rounded-2xl p-8'>
+						<h3 className='text-2xl font-bold text-white mb-6'>Send Message</h3>
+
+						<form onSubmit={handleSubmit} className='space-y-6'>
+							<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+								<div>
+									<label
+										htmlFor='name'
+										className='block text-secondary-300 font-semibold mb-2'
+									>
+										Name
+									</label>
+									<input
+										type='text'
+										id='name'
+										name='name'
+										value={formData.name}
+										onChange={handleChange}
+										placeholder='Your Name'
+										className='w-full px-4 py-3 bg-white bg-opacity-10 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 transition-all duration-200'
+										required
+									/>
+								</div>
+
+								<div>
+									<label
+										htmlFor='email'
+										className='block text-secondary-300 font-semibold mb-2'
+									>
+										Email
+									</label>
+									<input
+										type='email'
+										id='email'
+										name='email'
+										value={formData.email}
+										onChange={handleChange}
+										placeholder='email@example.com'
+										className='w-full px-4 py-3 bg-white bg-opacity-10 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 transition-all duration-200'
+										required
+									/>
+								</div>
+							</div>
+
+							<div>
+								<label
+									htmlFor='subject'
+									className='block text-secondary-300 font-semibold mb-2'
+								>
+									Subject
+								</label>
+								<input
+									type='text'
+									id='subject'
+									name='subject'
+									value={formData.subject}
+									onChange={handleChange}
+									placeholder='Subject'
+									className='w-full px-4 py-3 bg-white bg-opacity-10 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 transition-all duration-200'
+									required
+								/>
+							</div>
+
+							<div>
+								<label
+									htmlFor='message'
+									className='block text-secondary-300 font-semibold mb-2'
+								>
+									Message
+								</label>
+								<textarea
+									id='message'
+									name='message'
+									value={formData.message}
+									onChange={handleChange}
+									rows='4'
+									placeholder='Your message...'
+									className='w-full px-4 py-3 bg-white bg-opacity-10 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 transition-all duration-200 resize-vertical'
+									required
+								></textarea>
+							</div>
+
+							<button
+								type='submit'
+								className='w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg'
+							>
+								Send Message
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	)
 }
 
 export default Contact

@@ -1,49 +1,35 @@
-import styled from 'styled-components'
-import theme from '../styles/themes'
+import Head from 'next/head'
+import Link from 'next/link'
 import { FcCheckmark } from 'react-icons/fc'
-export const Section = styled.div`
-	min-height: 100vh;
-	max-width: 100%;
-	display: flex;
-	// align-items: center;
-	justify-content: center;
-	background: ${theme.colors.backgroundLight};
-	position: relative;
-`
 
-export const Box = styled.div`
-	// border: solid 1px;
-	max-width: 300px;
-	height: 300px;
-	margin-top: 100px;
-	padding: 1rem;
-`
-
-export const Icon = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-`
-
-export const P = styled.p`
-	margin: 1rem;
-`
-
-const messageSent = () => {
+const MessageSent = () => {
 	return (
-		<Section>
-			<Box>
-				<Icon>
-					<FcCheckmark size='3rem' />
-				</Icon>
-				{/* <CheckCircleOutlineIcon /> */}
-				<P>
-					Message sent successfully, We will get back to you at our earliest
-					convenience. Thank you.
-				</P>
-			</Box>
-		</Section>
+		<>
+			<Head>
+				<title>Message Sent - GL-B GROUP SARL</title>
+				<meta name='robots' content='noindex' />
+			</Head>
+			<div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+				<div className='bg-white rounded-2xl shadow-lg p-8 sm:p-10 max-w-md w-full mx-4 text-center'>
+					<div className='flex justify-center mb-4'>
+						<FcCheckmark size='3rem' />
+					</div>
+					<h1 className='text-2xl font-bold text-gray-800 mb-2'>
+						Message sent
+					</h1>
+					<p className='text-gray-600'>
+						Message sent successfully. We&apos;ll get back to you at our
+						earliest convenience. Thank you.
+					</p>
+					<div className='mt-6'>
+						<Link href='/' className='btn-primary'>
+							Back to Home
+						</Link>
+					</div>
+				</div>
+			</div>
+		</>
 	)
 }
 
-export default messageSent
+export default MessageSent

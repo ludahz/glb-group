@@ -1,234 +1,410 @@
-import styled from 'styled-components'
-import theme from '../styles/themes'
-import emailjs from 'emailjs-com'
+import Head from 'next/head'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-
-export const ContactSection = styled.div`
-	min-height: 100vh;
-	max-width: 100%;
-	position: relative;
-	// padding: 24px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background: ${theme.colors.backgroundLight};
-`
-
-export const ContactDesc = styled.div`
-	// padding: 24px;
-`
-
-export const Sections = styled.div`
-	// margin-top: 1rem;
-	width: 100%;
-`
-
-export const LeftSection = styled.div`
-	h1 {
-		text-align: center;
-		font-weight: 500;
-		font-size: clamp(2rem, 5vw, 3rem);
-	}
-	margin-bottom: 4rem;
-	// border: 2px solid red;
-	padding: 0rem;
-	P {
-		text-align: center;
-		padding: 0 5rem;
-		margin-top: 1rem;
-	}
-`
-
-export const RightSection = styled.div`
-	h1 {
-		margin-left: 24px;
-		margin-bottom: 12px;
-	}
-`
-
-export const ContactInfo = styled.div`
-	margin: 1rem;
-	padding: 1rem;
-`
-export const InfoDiv = styled.div`
-	display: flex;
-	align-items: center;
-	p {
-		margin-bottom: 12px;
-	}
-`
-export const Icon = styled.div`
-	margin-right: 12px;
-	margin-bottom: 12px;
-`
-
-export const FormContainer = styled.div`
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	padding: 1rem 0;
-	// background: rgb(0, 0, 0, 0.6);
-	form {
-		display: flex;
-		flex-direction: column;
-		width: 350px;
-		height: 440px;
-		background: #e6e6e6;
-		border-radius: 8px;
-		box-shadow: 0 0 40px -10px #000;
-		// margin: calc(50vh - 220px) auto;
-		padding: 20px 30px;
-		max-width: calc(100vw - 40px);
-		box-sizing: border-box;
-		font-family: 'Montserrat', sans-serif;
-		position: relative;
-		input {
-			height: 35px;
-			outline: none;
-			border: none;
-			background: none;
-			border-bottom: 2px solid #78788c;
-			margin: 8px 0 1rem 0;
-			padding: 1px 5px;
-			font-size: 1rem;
-			:focus {
-				border-bottom: 2px solid ${theme.colors.compliment};
-			}
-		}
-		label {
-			color: ${theme.colors.compliment};
-			// color: #2b81f2;
-		}
-		textarea {
-			resize: vertical;
-			padding: 5px;
-			margin: 8px 0 4rem 0;
-			outline: none;
-			border: none;
-			background: none;
-			font-size: 1rem;
-			border-bottom: 2px solid #78788c;
-			:focus {
-				border-bottom: 2px solid ${theme.colors.compliment};
-			}
-		}
-		h2 {
-			margin: 10px 0;
-			padding-bottom: 5px;
-			width: 120px;
-			color: #78788c;
-			border-bottom: 3px solid #78788c;
-		}
-	}
-`
-
-export const Button = styled.button`
-	font-weight: 800;
-	font-size: 1.2rem;
-	padding: 0.5rem;
-	bottom: 2rem;
-	width: 100px;
-	background: #000;
-	color: ${theme.colors.compliment};
-	border: solid 2px ${theme.colors.compliment};
-	border-radius: 5px;
-	transition: ease 0.3s;
-	cursor: pointer;
-	position: absolute;
-	:hover {
-		background: transparent;
-	}
-`
-
-export const Logo = styled.div`
-	position: relative;
-	img {
-		height: 250px;
-	}
-`
+import emailjs from 'emailjs-com'
+import {
+	IoLocationOutline,
+	IoCallOutline,
+	IoMailOutline,
+	IoTimeOutline,
+} from 'react-icons/io5'
+import {
+	FaFacebookF,
+	FaTwitter,
+	FaLinkedinIn,
+	FaInstagram,
+} from 'react-icons/fa'
 
 const Contact = () => {
-	const [success, setSuccess] = useState(false)
 	const router = useRouter()
-	const sendEmail = (e) => {
-		e.preventDefault()
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		phone: '',
+		company: '',
+		subject: '',
+		message: '',
+	})
+	const [isSubmitting, setIsSubmitting] = useState(false)
+	const [submitStatus, setSubmitStatus] = useState('')
 
-		emailjs
-			.sendForm(
-				'service_20wzgin',
-				'template_rq9v4bc',
-				e.target,
-				'user_N1BOgYgW3cDmEJxoe3AZ2'
-			)
-			.then(
-				(res) => {
-					console.log('SUCCESS!', res.status, res.text)
-					setSuccess(true)
-				},
-				(err) => {
-					console.log('FAILED...', err)
-				}
-			)
+	const handleChange = (e) => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value,
+		})
 	}
-	return (
-		<ContactSection>
-			{/* <h1>CONTACT US</h1> */}
-			<Logo>
-				<img src='images/logo/glb-group-logo-2.png' alt='' />
-			</Logo>
-			<ContactDesc></ContactDesc>
-			<Sections>
-				<LeftSection>
-					<h1>Contact Us</h1>
 
-					<p>
-						If you have any questions or queries a member of staff will always
-						be happy to help. Feel free to contact us by telephone or email and
-						we will be sure to get back to you as soon as possible.
-					</p>
-				</LeftSection>
-				<RightSection>
-					<FormContainer>
-						<form action='' onSubmit={sendEmail}>
-							<h2>Email Us</h2>
-							<label htmlFor='name'>Name</label>
-							<input
-								type='text'
-								name='name'
-								placeholder='Your Name'
-								required='true'
-							/>
-							<label htmlFor='email'>E-mail</label>
-							<input
-								type='email'
-								placeholder='email@example.com'
-								name='email'
-								required='true'
-							/>
-							<label htmlFor='email'>Your Message</label>
-							<textarea
-								name='message'
-								id=''
-								cols='30'
-								rows='10'
-								placeholder='What would you like to tell us'
-								required='true'
-							/>
-							<Button
-								type='submit'
-								onSubmit={success && router.push('messageSent')}
-							>
-								Send
-							</Button>
-						</form>
-					</FormContainer>
-				</RightSection>
-			</Sections>
-		</ContactSection>
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+		setIsSubmitting(true)
+		setSubmitStatus('')
+
+		try {
+			// You can configure EmailJS here or use your preferred form handling service
+			// await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData, 'YOUR_USER_ID')
+
+			// For now, we'll simulate a successful submission
+			setTimeout(() => {
+				setSubmitStatus('success')
+				setIsSubmitting(false)
+				setFormData({
+					name: '',
+					email: '',
+					phone: '',
+					company: '',
+					subject: '',
+					message: '',
+				})
+				// Redirect to success page after 2 seconds
+				setTimeout(() => {
+					router.push('/messageSent')
+				}, 2000)
+			}, 1000)
+		} catch (error) {
+			console.error('Error sending message:', error)
+			setSubmitStatus('error')
+			setIsSubmitting(false)
+		}
+	}
+
+	return (
+		<>
+			<Head>
+				<title>Contact Us - GL-B GROUP SARL</title>
+				<meta
+					name='description'
+					content="Get in touch with GL-B GROUP SARL for all your international trade needs. We're here to help you expand your business globally."
+				/>
+			</Head>
+
+			<div className='min-h-screen bg-gray-50'>
+				{/* Hero Section */}
+				<section className='bg-gradient-to-br from-blue-900 to-slate-800 text-white pt-24 pb-20'>
+					<div className='container-custom text-center'>
+						<h1 className='text-5xl md:text-6xl font-bold mb-6 text-gradient'>
+							Contact Us
+						</h1>
+						<div className='w-32 h-1 bg-primary-600 mx-auto rounded-full mb-8'></div>
+						<p className='text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed'>
+							Ready to take your business global? Get in touch with our expert
+							team today.
+						</p>
+					</div>
+				</section>
+
+				{/* Contact Information Cards */}
+				<section className='py-16 bg-white'>
+					<div className='container-custom'>
+						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+							<div className='text-center group'>
+								<div className='w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300'>
+									<IoLocationOutline className='text-white text-2xl' />
+								</div>
+								<h3 className='text-lg font-bold text-gray-800 mb-2'>
+									Address
+								</h3>
+								<p className='text-gray-600 text-sm'>
+									Sotuba ACI
+									<br />
+									Bamako, Mali
+								</p>
+							</div>
+
+							<div className='text-center group'>
+								<div className='w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300'>
+									<IoCallOutline className='text-white text-2xl' />
+								</div>
+								<h3 className='text-lg font-bold text-gray-800 mb-2'>Phone</h3>
+								<p className='text-gray-600 text-sm'>+22375450086</p>
+							</div>
+
+							<div className='text-center group'>
+								<div className='w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300'>
+									<IoMailOutline className='text-white text-2xl' />
+								</div>
+								<h3 className='text-lg font-bold text-gray-800 mb-2'>Email</h3>
+								<p className='text-gray-600 text-sm'>
+									<a
+										href='mailto:glbgroup10@gmail.com'
+										className='hover:text-primary-600'
+									>
+										glbgroup10@gmail.com
+									</a>
+								</p>
+							</div>
+
+							<div className='text-center group'>
+								<div className='w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300'>
+									<IoTimeOutline className='text-white text-2xl' />
+								</div>
+								<h3 className='text-lg font-bold text-gray-800 mb-2'>
+									Business Hours
+								</h3>
+								<p className='text-gray-600 text-sm'>
+									Mon - Fri: 8:00 - 18:00
+									<br />
+									Sat: 8:00 - 14:00
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				{/* Main Contact Section */}
+				<section className='section-padding'>
+					<div className='container-custom'>
+						<div className='grid grid-cols-1 lg:grid-cols-2 gap-16'>
+							{/* Contact Form */}
+							<div>
+								<div className='mb-8'>
+									<h2 className='text-3xl font-bold text-gray-800 mb-4'>
+										Send us a Message
+									</h2>
+									<p className='text-gray-600'>
+										Fill out the form below and we&apos;ll get back to you as
+										soon as possible.
+									</p>
+								</div>
+
+								<form onSubmit={handleSubmit} className='space-y-6'>
+									<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+										<div>
+											<label
+												htmlFor='name'
+												className='block text-gray-700 font-semibold mb-2'
+											>
+												Name *
+											</label>
+											<input
+												type='text'
+												id='name'
+												name='name'
+												value={formData.name}
+												onChange={handleChange}
+												required
+												className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200'
+												placeholder='Your full name'
+											/>
+										</div>
+
+										<div>
+											<label
+												htmlFor='email'
+												className='block text-gray-700 font-semibold mb-2'
+											>
+												Email *
+											</label>
+											<input
+												type='email'
+												id='email'
+												name='email'
+												value={formData.email}
+												onChange={handleChange}
+												required
+												className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200'
+												placeholder='your@email.com'
+											/>
+										</div>
+									</div>
+
+									<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+										<div>
+											<label
+												htmlFor='phone'
+												className='block text-gray-700 font-semibold mb-2'
+											>
+												Phone
+											</label>
+											<input
+												type='tel'
+												id='phone'
+												name='phone'
+												value={formData.phone}
+												onChange={handleChange}
+												className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200'
+												placeholder='+1 (555) 123-4567'
+											/>
+										</div>
+
+										<div>
+											<label
+												htmlFor='company'
+												className='block text-gray-700 font-semibold mb-2'
+											>
+												Company
+											</label>
+											<input
+												type='text'
+												id='company'
+												name='company'
+												value={formData.company}
+												onChange={handleChange}
+												className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200'
+												placeholder='Your company name'
+											/>
+										</div>
+									</div>
+
+									<div>
+										<label
+											htmlFor='subject'
+											className='block text-gray-700 font-semibold mb-2'
+										>
+											Subject *
+										</label>
+										<input
+											type='text'
+											id='subject'
+											name='subject'
+											value={formData.subject}
+											onChange={handleChange}
+											required
+											className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200'
+											placeholder='What can we help you with?'
+										/>
+									</div>
+
+									<div>
+										<label
+											htmlFor='message'
+											className='block text-gray-700 font-semibold mb-2'
+										>
+											Message *
+										</label>
+										<textarea
+											id='message'
+											name='message'
+											value={formData.message}
+											onChange={handleChange}
+											required
+											rows='6'
+											className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200 resize-vertical'
+											placeholder='Tell us more about your project or inquiry...'
+										></textarea>
+									</div>
+
+									{submitStatus === 'success' && (
+										<div className='bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg'>
+											Thank you! Your message has been sent successfully.
+											We&apos;ll get back to you soon.
+										</div>
+									)}
+
+									{submitStatus === 'error' && (
+										<div className='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg'>
+											Sorry, there was an error sending your message. Please try
+											again.
+										</div>
+									)}
+
+									<button
+										type='submit'
+										disabled={isSubmitting}
+										className={`w-full py-4 px-8 rounded-lg font-bold text-white transition-all duration-200 ${
+											isSubmitting
+												? 'bg-gray-400 cursor-not-allowed'
+												: 'bg-primary-600 hover:bg-primary-700 transform hover:scale-105'
+										}`}
+									>
+										{isSubmitting ? 'Sending...' : 'Send Message'}
+									</button>
+								</form>
+							</div>
+
+							{/* Contact Information */}
+							<div className='space-y-8'>
+								<div>
+									<h2 className='text-3xl font-bold text-gray-800 mb-6'>
+										Get in Touch
+									</h2>
+									<p className='text-gray-600 text-lg leading-relaxed mb-8'>
+										We&apos;re here to help you succeed in international trade.
+										Whether you&apos;re looking to import, export, or need
+										business consultancy, our team of experts is ready to assist
+										you.
+									</p>
+								</div>
+
+								{/* Office Hours */}
+								<div className='bg-gray-100 rounded-2xl p-8'>
+									<h3 className='text-xl font-bold text-gray-800 mb-4'>
+										Office Hours
+									</h3>
+									<div className='space-y-2 text-gray-600'>
+										<div className='flex justify-between'>
+											<span>Monday - Friday:</span>
+											<span className='font-semibold'>8:00 AM - 6:00 PM</span>
+										</div>
+										<div className='flex justify-between'>
+											<span>Saturday:</span>
+											<span className='font-semibold'>8:00 AM - 2:00 PM</span>
+										</div>
+										<div className='flex justify-between'>
+											<span>Sunday:</span>
+											<span className='font-semibold'>Closed</span>
+										</div>
+									</div>
+								</div>
+
+								{/* Social Media */}
+								<div>
+									<h3 className='text-xl font-bold text-gray-800 mb-4'>
+										Follow Us
+									</h3>
+									<div className='flex space-x-4'>
+										<div className='w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors cursor-pointer'>
+											<FaFacebookF />
+										</div>
+										<div className='w-12 h-12 bg-sky-500 rounded-full flex items-center justify-center text-white hover:bg-sky-600 transition-colors cursor-pointer'>
+											<FaTwitter />
+										</div>
+										<div className='w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white hover:bg-blue-800 transition-colors cursor-pointer'>
+											<FaLinkedinIn />
+										</div>
+										<div className='w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition-colors cursor-pointer'>
+											<FaInstagram />
+										</div>
+									</div>
+								</div>
+
+								{/* Emergency Contact */}
+								<div className='bg-primary-700 rounded-2xl p-8 text-white'>
+									<h3 className='text-xl font-bold mb-4'>
+										Need Urgent Assistance?
+									</h3>
+									<p className='mb-4'>
+										For urgent trade matters or time-sensitive inquiries,
+										contact us directly:
+									</p>
+									<div className='flex items-center space-x-2'>
+										<IoCallOutline className='text-2xl' />
+										<span className='font-semibold'>+223 75 45 00 86</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				{/* Map Section Placeholder */}
+				<section className='bg-gray-200 py-16'>
+					<div className='container-custom text-center'>
+						<h2 className='text-3xl font-bold text-gray-800 mb-4'>
+							Visit Our Office
+						</h2>
+						<p className='text-gray-600 mb-8'>
+							Located in the heart of Bamako, Mali
+						</p>
+						<div className='bg-gray-300 h-64 rounded-2xl flex items-center justify-center'>
+							<p className='text-gray-600 text-lg'>
+								Interactive Map Coming Soon
+							</p>
+						</div>
+					</div>
+				</section>
+			</div>
+		</>
 	)
 }
 

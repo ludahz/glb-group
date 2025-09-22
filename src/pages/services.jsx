@@ -1,187 +1,222 @@
-import styled from 'styled-components'
+import Head from 'next/head'
+import Link from 'next/link'
 import Image from 'next/image'
-import theme from '../styles/themes'
+import {
+	FaGlobe,
+	FaPassport,
+	FaChalkboardTeacher,
+	FaHandshake,
+	FaShippingFast,
+	FaBusinessTime,
+} from 'react-icons/fa'
+import { services as servicesData } from '../data/services'
 
-export const ServicesContainer = styled.div`
-	min-height: 100vh;
-	max-width: 100%;
-	position: relative;
-	padding: 24px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background: ${theme.colors.backgroundLight};
-`
-export const ServicesDescription = styled.div`
-	width: 100%;
-	margin: 20px 0;
-
-	padding: 0 50px;
-	@media ${theme.breakpoints.lg} {
-		padding: 0;
-	}
-`
-export const ServicesDescriptionContainer = styled.div`
-	display: flex;
-	width: 100%;
-
-	@media ${theme.breakpoints.md} {
-		flex-direction: column;
-	}
-`
-export const ServicesInfo = styled.div`
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	margin: 20px 0;
-`
-export const ServiceTitle = styled.h1`
-	font-size: clamp(1rem, 3vw, 1.5rem);
-	padding: 12px 0 0 0;
-	margin-bottom: 12px;
-	text-align: center;
-`
-
-export const ImageContainer = styled.div`
-	display: flex;
-	width: 45%;
-	justify-content: center;
-	padding: 20px 0;
-	@media ${theme.breakpoints.md} {
-		width: 100%;
-	}
-`
-export const DescriptionContainer = styled.div`
-	width: 55%;
-	@media ${theme.breakpoints.md} {
-		width: 100%;
-	}
-`
-
-export const ServiceImgDiv = styled.div`
-	max-height: 200px;
-	max-width: 300px;
-	border-radius: 10%;
-	margin-bottom: 12px;
-	@media ${theme.breakpoints.md} {
-		margin: 0 auto;
-	}
-`
-
-export const Img = styled.img`
-	width: 100%;
-	height: 100%;
-	border-radius: 10%;
-	object-fit: fill;
-`
-
-export const ServiceDesc = styled.div`
-	padding: 1rem;
-	ul {
-		padding-left: 24px;
-	}
-`
-const consultancy = [
-	// 'Company Registrations (Close Corporations, PTYs, NGOs, etc.)',
-	// 'Obtaining of other tender compliant documents (Tax, Social Security Certificates, Good Standings, Affirmative Action Compliance Certificates, BEE Certificates, Fitness Certificates, and Small Medium Enterprise Certificates, etc.)',
-	// 'Tax calculations, submissions, and maintenance',
-	'Market and feasibility Studies',
-	// 'SME mentorships',
-	'Customer Relationship Management',
-	'Outsourcing',
-	'Startup and Expansion Business Plans',
-	'Strategic Plans',
-	'Project Management',
-	'Change Management',
-	'Enterprise Applications',
-	// 'Financial Statements and Audits',
-	'Accounting and bookkeeping',
-	'Financial Management & Control',
-	'Merger & Acquisition Advisory Services',
-	'Supply Chain Management',
-	'Travel Services',
-	'International Trade',
-	'Logistics',
-]
-
-const otherServices = [
+const additionalServices = [
 	{
-		title: 'TRAINING AND CAPACITY BUILDING',
-		img: '/images/servicess/training-capacity.jpeg',
-		alt: 'Training and Capacity Building',
-		desc: 'We recognize the need for our Malian businesses to be equipped with sufficient skills and knowledge to run their firms efficiently. One such crucial knowledge is tax laws and regulations. We offer tax training, giving the much-needed emphasis on Income Tax and Provisional tax, VAT on Import, Value Added Tax for different businesses in different industries, and PAYE for personal tax. We also offer training in accounting and bookkeeping as well as business-related acumens. For group bookings and tailor-made training for your organization, please do not hesitate to contact us.',
+		icon: <FaGlobe className='text-primary-600' size='3rem' />,
+		title: 'Global Network',
+		description:
+			'Extensive international partnerships across multiple continents',
 	},
 	{
-		title: 'INTERNATIONAL TRADE FACILITATION AND DEVELOPMENT',
-		img: '/images/servicess/International-trade.jpeg',
-		alt: 'International trade and development',
-		desc: 'Trade facilitation involves a wide range of activities centered on lowering trade transaction costs for global commerce firms. These costs include the price of moving freight from the factory to final destinations. Firms must manage border clearance procedures and pay trade services fees, among many other steps after goods and services are produced. As such, trade facilitation involves much more than trucking goods across national borders or shipping a package by sea transport. As a consulting firm, it is our job to run by taking over these operations, leaving companies to focus on other more imperative and tenacious factors of running their business.',
+		icon: <FaShippingFast className='text-primary-600' size='3rem' />,
+		title: 'Fast Delivery',
+		description: 'Efficient logistics and shipping solutions worldwide',
 	},
 	{
-		title: 'OTHER SERVICES',
-		img: '/images/servicess/visa-consult.jpeg',
-		alt: 'Other Services',
-		desc: 'Visa Consultations – we strive to provide one of the best visa consultation service to our clients. We provide advice for various types of visas, such as business visa, tourist visa, school visa, and all other forms of visa applications you might have. Our team is well-trained and has many years of experience to offer the best service to you.',
+		icon: <FaBusinessTime className='text-primary-600' size='3rem' />,
+		title: '24/7 Support',
+		description: 'Round-the-clock customer service and business support',
 	},
 ]
+
+const ServiceCard = ({ service, index }) => (
+	<div
+		className={`flex flex-col lg:flex-row items-center gap-12 ${
+			index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+		}`}
+	>
+		{/* Content */}
+		<div className='flex-1 space-y-6'>
+			<div className='flex items-center space-x-4'>
+				<div className='w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-primary-600 rounded-full flex items-center justify-center text-white'>
+					{service.icon === 'globe' && (
+						<FaGlobe className='w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10' />
+					)}
+					{service.icon === 'passport' && (
+						<FaPassport className='w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10' />
+					)}
+					{service.icon === 'chalkboard' && (
+						<FaChalkboardTeacher className='w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10' />
+					)}
+					{service.icon === 'handshake' && (
+						<FaHandshake className='w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10' />
+					)}
+				</div>
+				<h3 className='text-2xl sm:text-3xl font-bold text-gray-800'>
+					{service.title}
+				</h3>
+			</div>
+
+			<p className='text-gray-600 text-lg leading-relaxed'>
+				{service.description}
+			</p>
+
+			<div className='grid grid-cols-2 gap-4'>
+				{service.features.map((feature, idx) => (
+					<div key={idx} className='flex items-center space-x-2'>
+						<div className='w-2 h-2 bg-primary-600 rounded-full'></div>
+						<span className='text-gray-700 font-medium'>{feature}</span>
+					</div>
+				))}
+			</div>
+
+			<Link
+				href={`/services/${service.slug}`}
+				className='btn-primary mt-2 md:mt-4 self-start'
+			>
+				Learn More
+			</Link>
+		</div>
+
+		{/* Image */}
+		<div className='flex-1 w-full'>
+			<div className='relative w-full h-72 sm:h-96 rounded-2xl overflow-hidden shadow-xl'>
+				<Image
+					src={service.image}
+					alt={service.title}
+					fill
+					sizes='(min-width: 1024px) 50vw, 100vw'
+					className='object-cover'
+				/>
+				<div className='absolute inset-0 bg-gradient-to-t from-black/30 to-transparent'></div>
+			</div>
+		</div>
+	</div>
+)
 
 const Services = () => {
 	return (
-		<ServicesContainer>
-			<h1>Services</h1>
-			<ServicesDescription>
-				<p>
-					The services we offer at GL-B GROUP SARL are not limited to a
-					geographical area. We accept clients globally and we are constantly
-					expanding our physical offices. We can help our clients in their
-					businesses with the following services.
-				</p>
-			</ServicesDescription>
-			<ServicesInfo>
-				<ServiceTitle>BUSINESS CONSULTANCY</ServiceTitle>
-				<ServicesDescriptionContainer>
-					<ImageContainer>
-						<ServiceImgDiv>
-							<Img src='/images/servicess/consult.jpg' alt='Services' />
-						</ServiceImgDiv>
-					</ImageContainer>
-					<DescriptionContainer>
-						<ServiceDesc>
-							<ul>
-								{consultancy.map((item, i) => (
-									<li key={i}>{item}</li>
-								))}
-							</ul>
-						</ServiceDesc>
-					</DescriptionContainer>
-				</ServicesDescriptionContainer>
-			</ServicesInfo>
-			{otherServices.map((item, i) => (
-				<ServicesInfo key={i}>
-					<ServiceTitle>{item.title}</ServiceTitle>
-					<ServicesDescriptionContainer>
-						<ImageContainer>
-							<ServiceImgDiv>
-								<Img
-									src={item.img}
-									alt={item.alt}
-									width='300px'
-									height='200px'
-								/>
-							</ServiceImgDiv>
-						</ImageContainer>
-						<DescriptionContainer>
-							<ServiceDesc>
-								<p>{item.desc}</p>
-							</ServiceDesc>
-						</DescriptionContainer>
-					</ServicesDescriptionContainer>
-				</ServicesInfo>
-			))}
-		</ServicesContainer>
+		<>
+			<Head>
+				<title>Services - GL-B GROUP SARL</title>
+				<meta
+					name='description'
+					content='Comprehensive international trade services including import, export, business consultancy, and trade facilitation.'
+				/>
+			</Head>
+
+			<div className='min-h-screen bg-gray-50'>
+				{/* Hero Section */}
+				<section className='bg-gradient-to-br from-blue-900 to-slate-800 text-white pt-24 pb-20'>
+					<div className='container-custom text-center'>
+						<h1 className='text-5xl md:text-6xl font-bold mb-6 text-gradient'>
+							Our Services
+						</h1>
+						<div className='w-32 h-1 bg-primary-600 mx-auto rounded-full mb-8'></div>
+						<p className='text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed'>
+							Comprehensive international trade solutions designed to connect
+							businesses across borders and facilitate global commerce.
+						</p>
+					</div>
+				</section>
+
+				{/* Main Services */}
+				<section className='section-padding'>
+					<div className='container-custom'>
+						<div className='space-y-24'>
+							{servicesData.map((service, index) => (
+								<ServiceCard key={index} service={service} index={index} />
+							))}
+						</div>
+					</div>
+				</section>
+
+				{/* Additional Services */}
+				<section className='bg-white section-padding'>
+					<div className='container-custom'>
+						<div className='text-center mb-16'>
+							<h2 className='text-4xl md:text-5xl font-bold text-gray-800 mb-4'>
+								Why Choose Us
+							</h2>
+							<div className='w-24 h-1 bg-primary-600 mx-auto rounded-full'></div>
+							<p className='text-gray-600 text-lg mt-6 max-w-2xl mx-auto'>
+								Our commitment to excellence and years of experience make us
+								your ideal partner
+							</p>
+						</div>
+
+						<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+							{additionalServices.map((service, index) => (
+								<div key={index} className='text-center group'>
+									<div className='mb-6 flex justify-center'>
+										<div className='w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-primary-50 transition-colors duration-300'>
+											<div className='text-primary-600'>
+												{/* Icon is a React element with size prop; wrap to keep color, scale with text size */}
+												<span className='inline-block text-2xl sm:text-3xl md:text-4xl'>
+													{service.icon}
+												</span>
+											</div>
+										</div>
+									</div>
+									<h3 className='text-xl font-bold text-gray-800 mb-4'>
+										{service.title}
+									</h3>
+									<p className='text-gray-600 leading-relaxed'>
+										{service.description}
+									</p>
+								</div>
+							))}
+						</div>
+					</div>
+				</section>
+
+				{/* Stats Section */}
+				<section className='bg-primary-700 text-white py-20'>
+					<div className='container-custom'>
+						<div className='grid grid-cols-2 md:grid-cols-4 gap-8 text-center'>
+							<div>
+								<div className='text-4xl md:text-5xl font-bold mb-2'>10+</div>
+								<div className='text-primary-100'>Years Experience</div>
+							</div>
+							<div>
+								<div className='text-4xl md:text-5xl font-bold mb-2'>500+</div>
+								<div className='text-primary-100'>Happy Clients</div>
+							</div>
+							<div>
+								<div className='text-4xl md:text-5xl font-bold mb-2'>50+</div>
+								<div className='text-primary-100'>Countries Served</div>
+							</div>
+							<div>
+								<div className='text-4xl md:text-5xl font-bold mb-2'>1000+</div>
+								<div className='text-primary-100'>Successful Trades</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				{/* CTA Section */}
+				<section className='section-padding bg-gray-100'>
+					<div className='container-custom text-center'>
+						<h2 className='text-3xl md:text-4xl font-bold text-gray-800 mb-6'>
+							Ready to Expand Your Business Globally?
+						</h2>
+						<p className='text-xl text-gray-600 mb-8 max-w-2xl mx-auto'>
+							Let us help you navigate the complexities of international trade
+							and unlock new opportunities for your business.
+						</p>
+						<div className='flex flex-col sm:flex-row gap-4 justify-center'>
+							<Link href='/contact' className='btn-primary'>
+								Get Started Today
+							</Link>
+							<Link href='/about' className='btn-secondary'>
+								Learn More About Us
+							</Link>
+						</div>
+					</div>
+				</section>
+			</div>
+		</>
 	)
 }
 

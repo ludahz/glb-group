@@ -1,49 +1,43 @@
-import styled from 'styled-components'
+import Image from 'next/image'
 
-export const TeamCard = styled.div`
-  width: 280px;
-  min-height: 350px;
-  border: solid 1px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 10px 5px;
-  h4 {
-    margin-bottom: 10px;
-  }
-  h6 {
-    margin-bottom: 10px;
-  }
+const Team = ({ member }) => {
+	return (
+		<div className='group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2'>
+			{/* Header */}
+			<div className='h-24 bg-gradient-to-r from-primary-600 to-secondary-500'></div>
 
-  p {
-    text-align: center;
-  }
-`
+			{/* Avatar */}
+			<div className='-mt-16 flex justify-center'>
+				<div className='relative w-32 h-32 rounded-full ring-4 ring-white shadow-lg overflow-hidden bg-gray-100'>
+					<Image
+						src={member.img}
+						alt={member.name}
+						fill
+						className='object-cover'
+					/>
+				</div>
+			</div>
 
-export const ImgContainer = styled.div`
-  height: 130px;
-  width: 130px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-`
+			{/* Content */}
+			<div className='p-6 pt-4 text-center'>
+				<h4 className='text-xl font-bold text-gray-800 mb-1 group-hover:text-primary-600 transition-colors duration-300'>
+					{member.name}
+				</h4>
+				<h6 className='text-primary-600 font-semibold mb-3'>{member.title}</h6>
+				<p className='text-gray-600 text-sm leading-relaxed'>{member.desc}</p>
 
-export const Img = styled.img`
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-`
-
-const Team = ({ img, name, title, desc }) => {
-  return (
-    <TeamCard>
-      <ImgContainer>
-        <Img src={img} alt='Our Team' />
-      </ImgContainer>
-      <h4>{name}</h4>
-      <h6>{title}</h6>
-      <p>{desc}</p>
-    </TeamCard>
-  )
+				{/* Social links placeholder */}
+				<div className='flex justify-center space-x-3 mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+					<div className='w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center text-white hover:bg-primary-700 transition-colors cursor-pointer'>
+						<span className='text-xs'>in</span>
+					</div>
+					<div className='w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center text-white hover:bg-primary-700 transition-colors cursor-pointer'>
+						<span className='text-xs'>@</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	)
 }
 
 export default Team

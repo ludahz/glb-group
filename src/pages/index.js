@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import Banner from '../components/Banner'
-import Services from '../components/Services'
-import Contact from '../components/Contact'
-import AboutUs from '../components/AboutUs'
-import Products from '../components/Products'
+const Services = dynamic(() => import('../components/Services'), { ssr: false })
+const AboutUs = dynamic(() => import('../components/AboutUs'), { ssr: false })
+const Products = dynamic(() => import('../components/Products'), { ssr: false })
+const Contact = dynamic(() => import('../components/Contact'), { ssr: false })
 
 export default function Home() {
   return (
@@ -16,10 +17,10 @@ export default function Home() {
       </Head>
 
       <Banner />
-      <Services />
-      <AboutUs />
-      <Products />
-      <Contact />
+  <Services />
+  <AboutUs />
+  <Products />
+  <Contact />
     </div>
   )
 }

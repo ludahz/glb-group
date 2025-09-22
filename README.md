@@ -12,6 +12,29 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+
+### Adding the new product images (sanitary pads, diapers, foods)
+
+We added a new product category and two food items:
+
+- Hygiene & Baby Care (new category)
+	- Sanitary Pads → `public/images/product/maman-africa-sanitary-pads.jpg`
+	- L'enfant noir Baby Diapers → `public/images/product/lenfant-noir-diapers.jpg`
+- Food Items (existing category)
+	- Tomato Paste → `public/images/product/maman-africa-tomato-paste.jpg`
+	- Chicken Luncheon Meat → `public/images/product/chicken-luncheon-meat.jpg`
+
+Drop the image files with those exact filenames into the paths above. After adding them, optionally compress them with:
+
+```sh
+npm run optimize:images
+```
+
+These products show up:
+
+- Home → Products section tabs (preview of 3 per category; Hygiene shows up with its 2 items)
+- /products and /products-new pages
+- /products/hygiene dynamic route (view all Hygiene & Baby Care)
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
