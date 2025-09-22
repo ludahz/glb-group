@@ -12,6 +12,15 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Node.js version
+
+This project targets Node 22+. If you use nvm:
+
+```sh
+nvm use
+```
+
+The repo contains `.nvmrc` and `.node-version` set to 22, and `package.json` engines is `>=22.0.0`.
 
 ### Adding the new product images (sanitary pads, diapers, foods)
 
