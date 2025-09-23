@@ -2,15 +2,23 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
-import { foodItems, machinery, hygiene } from '../data/products'
+import PageHero from '../components/PageHero'
+import {
+	foodItems,
+	machinery,
+	electronics,
+	exports as exportGoods,
+	hygiene,
+} from '../data/products'
 
+// Build product categories from data exports
 const productCategories = [
 	{
 		id: 'food',
 		name: 'Food Items',
 		description: 'High-quality food products sourced from around the world',
 		items: foodItems,
-		bgColor: 'from-green-500 to-emerald-600',
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 	{
 		id: 'machinery',
@@ -18,167 +26,113 @@ const productCategories = [
 		description:
 			'Industrial and agricultural machinery for various applications',
 		items: machinery,
-		bgColor: 'from-blue-500 to-indigo-600',
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 	{
 		id: 'hygiene',
 		name: 'Hygiene & Baby Care',
 		description: 'Everyday essentials including sanitary pads and baby diapers',
 		items: hygiene,
-		bgColor: 'from-rose-500 to-pink-600',
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 	{
 		id: 'electronics',
 		name: 'Electronics',
 		description: 'Modern electronics and technology products',
-		items: [
-			{
-				id: 1,
-				title: 'Laptops',
-				img: '/images/product/laptops.jpeg',
-				description: 'Portable computers for work and study',
-			},
-			{
-				id: 2,
-				title: 'Mobile Devices',
-				img: '/images/product/mobile.jpeg',
-				description: 'Smartphones and tablets from leading brands',
-			},
-			{
-				id: 3,
-				title: 'Kitchen Appliances',
-				img: '/images/product/kitchen-appliances.jpeg',
-				description: 'Everyday kitchen appliances like blenders and cookers',
-			},
-			{
-				id: 4,
-				title: 'Home Theater',
-				img: '/images/product/home-theater.jpeg',
-				description: 'Televisions, speakers, and home audio systems',
-			},
-			{
-				id: 5,
-				title: 'Accessories',
-				img: '/images/product/accessories.jpeg',
-				description: 'Chargers, cables, and essential tech accessories',
-			},
-		],
-		bgColor: 'from-purple-500 to-pink-600',
+		items: electronics,
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 	{
 		id: 'exports',
 		name: 'Export Products',
 		description:
 			'Premium export quality products including gold, cotton, and agricultural goods',
-		items: [
-			{
-				id: 1,
-				title: 'Gold',
-				img: '/images/product/gold.jpeg',
-				description: 'Refined gold suitable for international export',
-			},
-			{
-				id: 2,
-				title: 'Cotton',
-				img: '/images/product/cotton.jpeg',
-				description: 'Raw and processed cotton bales for textiles',
-			},
-			{
-				id: 3,
-				title: 'Dried Hibiscus',
-				img: '/images/product/dried-hibiscus.jpg',
-				description: 'Premium dried hibiscus petals for beverages and teas',
-			},
-		],
-		bgColor: 'from-yellow-500 to-orange-600',
+		items: exportGoods,
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 ]
 
-const ProductCard = ({ product }) => (
-	<div className='group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2'>
-		<div className='aspect-square relative overflow-hidden'>
-			<Image
-				src={product.img}
-				alt={
-					product.description
-						? `${product.title} — ${product.description}`
-						: product.title
-				}
-				title={product.title}
-				fill
-				sizes='(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw'
-				className='object-contain bg-white group-hover:scale-110 transition-transform duration-300'
-			/>
-			<div className='absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
-			<div className='absolute bottom-4 left-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100'>
-				<button className='bg-white text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors'>
-					View Details
-				</button>
+function ProductCard({ product }) {
+	return (
+		<div className='group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl ring-1 ring-gray-200 hover:ring-primary-200 transition-all duration-300 transform hover:-translate-y-1'>
+			<div className='aspect-[4/3] relative overflow-hidden bg-gray-50'>
+				<Image
+					src={product.img}
+					alt={
+						product.description
+							? `${product.title} — ${product.description}`
+							: product.title
+					}
+					title={product.title}
+					fill
+					sizes='(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw'
+					className='object-contain p-2 md:p-3 group-hover:scale-105 transition-transform duration-300'
+				/>
+				<div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
+			</div>
+			<div className='p-3 md:p-4 lg:p-6'>
+				<h3 className='text-base md:text-lg lg:text-xl font-semibold md:font-bold text-gray-800 group-hover:text-primary-600 transition-colors duration-300 line-clamp-2'>
+					{product.title}
+				</h3>
+				{product.description && (
+					<p className='text-gray-600 mt-1 md:mt-2 text-xs md:text-sm leading-relaxed line-clamp-3'>
+						{product.description}
+					</p>
+				)}
 			</div>
 		</div>
-		<div className='p-6'>
-			<h3 className='text-xl font-bold text-gray-800 group-hover:text-primary-600 transition-colors duration-300'>
-				{product.title}
-			</h3>
-			{product.description && (
-				<p className='text-gray-600 mt-2 text-sm leading-relaxed'>
-					{product.description}
-				</p>
-			)}
-		</div>
-	</div>
-)
+	)
+}
 
-const Products = () => {
+export default function Products() {
 	const [activeCategory, setActiveCategory] = useState(0)
 	const [searchTerm, setSearchTerm] = useState('')
 
 	const filteredProducts = productCategories[activeCategory].items.filter(
-		(item) => item.title.toLowerCase().includes(searchTerm.toLowerCase())
+		(item) => {
+			const term = searchTerm.trim().toLowerCase()
+			if (!term) return true
+			return (
+				item.title.toLowerCase().includes(term) ||
+				(item.description
+					? item.description.toLowerCase().includes(term)
+					: false)
+			)
+		}
 	)
 
 	return (
 		<>
 			<Head>
-				<title>Products - GL-B GROUP SARL</title>
+				<title>Products - GLB Group</title>
 				<meta
 					name='description'
-					content='Explore our comprehensive range of high-quality products including food items, machinery, electronics, and export goods.'
+					content='Explore our comprehensive range of high-quality products including food items, machinery, electronics, hygiene, and export goods.'
 				/>
 			</Head>
 
 			<div className='min-h-screen bg-gray-50'>
-				{/* Hero Section */}
-				<section className='bg-gradient-to-br from-blue-900 to-slate-800 text-white pt-24 pb-20'>
-					<div className='container-custom text-center'>
-						<h1 className='text-5xl md:text-6xl font-bold mb-6 text-gradient'>
-							Our Products
-						</h1>
-						<div className='w-32 h-1 bg-primary-600 mx-auto rounded-full mb-8'></div>
-						<p className='text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed'>
-							Discover our comprehensive range of high-quality products spanning
-							food items, industrial machinery, modern electronics, and premium
-							export goods.
-						</p>
-					</div>
-				</section>
+				<PageHero
+					title='Our Products'
+					subtitle='Discover our comprehensive range of quality products'
+					backgroundImage='/images/banner/Container.jpeg'
+				/>
 
 				{/* Search and Filter Section */}
-				<section className='py-12 bg-white shadow-sm'>
-					<div className='container-custom'>
-						{/* Search Bar */}
-						<div className='max-w-md mx-auto mb-8'>
+				<section className='py-6 md:py-8 bg-white shadow-sm'>
+					<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+						<div className='max-w-md mx-auto mb-6'>
 							<div className='relative'>
 								<input
 									type='text'
 									placeholder='Search products...'
 									value={searchTerm}
 									onChange={(e) => setSearchTerm(e.target.value)}
-									className='w-full px-6 py-3 pl-12 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent'
+									className='w-full px-5 py-3 pl-12 border-2 border-primary-800/70 rounded-full bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-primary-700 focus:border-primary-700 text-base transition-colors'
 								/>
-								<div className='absolute left-4 top-1/2 transform -translate-y-1/2'>
+								<div className='absolute left-4 top-1/2 -translate-y-1/2 text-primary-800/70'>
 									<svg
-										className='w-5 h-5 text-gray-400'
+										className='w-5 h-5'
 										fill='none'
 										stroke='currentColor'
 										viewBox='0 0 24 24'
@@ -195,15 +149,15 @@ const Products = () => {
 						</div>
 
 						{/* Category Tabs */}
-						<div className='flex flex-wrap justify-center gap-4'>
+						<div className='flex flex-wrap justify-center gap-2 md:gap-3'>
 							{productCategories.map((category, index) => (
 								<button
 									key={category.id}
 									onClick={() => setActiveCategory(index)}
-									className={`px-8 py-4 rounded-full font-semibold transition-all duration-300 ${
+									className={`px-3 md:px-4 lg:px-5 py-2 md:py-2.5 rounded-full font-medium text-xs md:text-sm transition-all ${
 										activeCategory === index
-											? 'bg-primary-600 text-white shadow-lg transform scale-105'
-											: 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:scale-105'
+											? 'bg-primary-600 text-white shadow'
+											: 'bg-gray-100 text-gray-700 hover:bg-gray-200'
 									}`}
 								>
 									{category.name}
@@ -213,63 +167,51 @@ const Products = () => {
 					</div>
 				</section>
 
-				{/* Products Section */}
-				<section className='section-padding'>
-					<div className='container-custom'>
-						{/* Category Header */}
-						<div className='text-center mb-16'>
+				{/* Products Grid */}
+				<section className='py-6 md:py-10'>
+					<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+						<div className='text-center mb-6 md:mb-10'>
 							<div
-								className={`inline-block px-8 py-4 rounded-2xl bg-gradient-to-br ${productCategories[activeCategory].bgColor} text-white mb-6`}
+								className={`inline-block px-5 md:px-6 py-2.5 md:py-3 rounded-2xl bg-gradient-to-br ${productCategories[activeCategory].bgColor} text-white`}
 							>
-								<h2 className='text-3xl font-bold'>
+								<h2 className='text-lg md:text-2xl font-bold'>
 									{productCategories[activeCategory].name}
 								</h2>
 							</div>
-							<p className='text-gray-600 text-lg max-w-2xl mx-auto'>
+							<p className='text-gray-600 text-sm md:text-base max-w-2xl mx-auto mt-3'>
 								{productCategories[activeCategory].description}
 							</p>
 						</div>
 
-						{/* Products Grid */}
 						{filteredProducts.length > 0 ? (
-							<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
-								{filteredProducts.map((product, index) => (
-									<ProductCard key={product.id || index} product={product} />
+							<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6'>
+								{filteredProducts.map((product) => (
+									<ProductCard key={product.id} product={product} />
 								))}
 							</div>
 						) : (
-							<div className='text-center py-16'>
-								<div className='text-gray-400 text-6xl mb-4'>🔍</div>
-								<h3 className='text-2xl font-bold text-gray-600 mb-2'>
+							<div className='text-center py-12'>
+								<div className='text-gray-400 text-5xl mb-3'>🔍</div>
+								<h3 className='text-xl font-semibold text-gray-700 mb-1'>
 									No products found
 								</h3>
-								<p className='text-gray-500'>Try adjusting your search terms</p>
+								<p className='text-gray-500 text-sm'>
+									Try adjusting your search terms
+								</p>
 							</div>
 						)}
-					</div>
-				</section>
 
-				{/* CTA Section */}
-				<section className='bg-primary-700 text-white py-20'>
-					<div className='container-custom text-center'>
-						<h2 className='text-3xl md:text-4xl font-bold mb-6'>
-							Interested in Our Products?
-						</h2>
-						<p className='text-xl mb-8 max-w-2xl mx-auto'>
-							Contact us today to learn more about our products and how we can
-							serve your business needs.
-						</p>
-						<Link
-							className='inline-block bg-white text-primary-600 font-bold px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 transform hover:scale-105'
-							href='/contact'
-						>
-							Get In Touch
-						</Link>
+						<div className='text-center mt-10'>
+							<Link
+								href='/contact'
+								className='inline-block bg-primary-600 text-white px-5 md:px-6 py-2.5 md:py-3 rounded-lg text-sm md:text-base font-semibold hover:bg-primary-700 transition-colors'
+							>
+								Get In Touch
+							</Link>
+						</div>
 					</div>
 				</section>
 			</div>
 		</>
 	)
 }
-
-export default Products

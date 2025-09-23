@@ -10,6 +10,7 @@ import {
 	FaBusinessTime,
 } from 'react-icons/fa'
 import { services as servicesData } from '../data/services'
+import PageHero from '../components/PageHero'
 
 const additionalServices = [
 	{
@@ -107,19 +108,13 @@ const Services = () => {
 			</Head>
 
 			<div className='min-h-screen bg-gray-50'>
-				{/* Hero Section */}
-				<section className='bg-gradient-to-br from-blue-900 to-slate-800 text-white pt-24 pb-20'>
-					<div className='container-custom text-center'>
-						<h1 className='text-5xl md:text-6xl font-bold mb-6 text-gradient'>
-							Our Services
-						</h1>
-						<div className='w-32 h-1 bg-primary-600 mx-auto rounded-full mb-8'></div>
-						<p className='text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed'>
-							Comprehensive international trade solutions designed to connect
-							businesses across borders and facilitate global commerce.
-						</p>
-					</div>
-				</section>
+				<PageHero
+					title='Our Services'
+					subtitle='Global Solutions'
+					description='Comprehensive international trade solutions designed to connect businesses across borders and facilitate global commerce.'
+					variant='gradient'
+					breadcrumbs={[{ label: 'Services' }]}
+				/>
 
 				{/* Main Services */}
 				<section className='section-padding'>

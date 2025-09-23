@@ -20,9 +20,9 @@ const Footer = () => {
 							<div className='w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center text-white hover:bg-primary-700 transition-colors cursor-pointer'>
 								<span className='text-sm font-bold'>f</span>
 							</div>
-							<div className='w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center text-white hover:bg-primary-700 transition-colors cursor-pointer'>
+							{/* <div className='w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center text-white hover:bg-primary-700 transition-colors cursor-pointer'>
 								<span className='text-sm font-bold'>in</span>
-							</div>
+							</div> */}
 						</div>
 					</div>
 

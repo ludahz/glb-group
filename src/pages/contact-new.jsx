@@ -80,9 +80,9 @@ const Contact = () => {
 
 			<div className='min-h-screen bg-gray-50'>
 				{/* Hero Section */}
-				<section className='bg-gradient-to-br from-blue-900 to-slate-800 text-white pt-24 pb-20'>
+				<section className='bg-gradient-to-br from-primary-800 to-primary-600 text-white pt-24 pb-20'>
 					<div className='container-custom text-center'>
-						<h1 className='text-5xl md:text-6xl font-bold mb-6 text-gradient'>
+						<h1 className='text-5xl md:text-6xl font-extrabold mb-6 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]'>
 							Contact Us
 						</h1>
 						<div className='w-32 h-1 bg-primary-600 mx-auto rounded-full mb-8'></div>
@@ -346,18 +346,18 @@ const Contact = () => {
 										Follow Us
 									</h3>
 									<div className='flex space-x-4'>
-										<div className='w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors cursor-pointer'>
+										<div className='w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center text-white hover:bg-primary-700 transition-colors cursor-pointer'>
 											<FaFacebookF />
 										</div>
-										<div className='w-12 h-12 bg-sky-500 rounded-full flex items-center justify-center text-white hover:bg-sky-600 transition-colors cursor-pointer'>
+										{/* <div className='w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center text-white hover:bg-primary-600 transition-colors cursor-pointer'>
 											<FaTwitter />
 										</div>
-										<div className='w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white hover:bg-blue-800 transition-colors cursor-pointer'>
+										<div className='w-12 h-12 bg-primary-700 rounded-full flex items-center justify-center text-white hover:bg-primary-800 transition-colors cursor-pointer'>
 											<FaLinkedinIn />
 										</div>
-										<div className='w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition-colors cursor-pointer'>
+										<div className='w-12 h-12 bg-secondary-600 rounded-full flex items-center justify-center text-white hover:bg-secondary-700 transition-colors cursor-pointer'>
 											<FaInstagram />
-										</div>
+										</div> */}
 									</div>
 								</div>
 

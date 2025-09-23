@@ -15,7 +15,7 @@ const productCategories = [
 		name: 'Food Items',
 		description: 'High-quality food products sourced from around the world',
 		items: foodItems,
-		bgColor: 'from-green-500 to-emerald-600',
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 	{
 		id: 'machinery',
@@ -23,28 +23,28 @@ const productCategories = [
 		description:
 			'Industrial and agricultural machinery for various applications',
 		items: machinery,
-		bgColor: 'from-blue-500 to-indigo-600',
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 	{
 		id: 'electronics',
 		name: 'Electronics',
 		description: 'Modern electronics and technology products',
 		items: electronics,
-		bgColor: 'from-purple-500 to-pink-600',
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 	{
 		id: 'hygiene',
 		name: 'Hygiene & Baby Care',
 		description: 'Everyday essentials including sanitary pads and baby diapers',
 		items: hygiene,
-		bgColor: 'from-rose-500 to-pink-600',
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 	{
 		id: 'exports',
 		name: 'Exports',
 		description: 'Premium commodities for international markets',
 		items: exportItems,
-		bgColor: 'from-amber-500 to-yellow-600',
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 ]
 

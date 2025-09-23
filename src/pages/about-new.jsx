@@ -17,9 +17,9 @@ const About = () => {
 
 			<div className='min-h-screen bg-gray-50'>
 				{/* Hero Section */}
-				<section className='bg-gradient-to-br from-blue-900 to-slate-800 text-white pt-24 pb-20'>
+				<section className='bg-gradient-to-br from-primary-800 to-primary-600 text-white pt-24 pb-20'>
 					<div className='container-custom text-center'>
-						<h1 className='text-5xl md:text-6xl font-bold mb-6 text-gradient'>
+						<h1 className='text-5xl md:text-6xl font-extrabold mb-6 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]'>
 							About GL-B GROUP
 						</h1>
 						<div className='w-32 h-1 bg-primary-600 mx-auto rounded-full mb-8'></div>

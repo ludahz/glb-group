@@ -10,7 +10,7 @@ const productCategories = [
 		name: 'Food Items',
 		description: 'High-quality food products sourced from around the world',
 		items: foodItems,
-		bgColor: 'from-green-500 to-emerald-600',
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 	{
 		id: 'machinery',
@@ -18,14 +18,14 @@ const productCategories = [
 		description:
 			'Industrial and agricultural machinery for various applications',
 		items: machinery,
-		bgColor: 'from-blue-500 to-indigo-600',
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 	{
 		id: 'hygiene',
 		name: 'Hygiene & Baby Care',
 		description: 'Everyday essentials including sanitary pads and baby diapers',
 		items: hygiene,
-		bgColor: 'from-rose-500 to-pink-600',
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 	{
 		id: 'electronics',
@@ -63,7 +63,7 @@ const productCategories = [
 				description: 'Chargers, cables, and essential tech accessories',
 			},
 		],
-		bgColor: 'from-purple-500 to-pink-600',
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 	{
 		id: 'exports',
@@ -90,7 +90,7 @@ const productCategories = [
 				description: 'Premium dried hibiscus petals for beverages and teas',
 			},
 		],
-		bgColor: 'from-yellow-500 to-orange-600',
+		bgColor: 'from-primary-600 to-primary-700',
 	},
 ]
 
@@ -149,7 +149,7 @@ const Products = () => {
 
 			<div className='min-h-screen bg-gray-50'>
 				{/* Hero Section */}
-				<section className='bg-gradient-to-br from-blue-900 to-slate-800 text-white pt-24 pb-20'>
+				<section className='bg-gradient-to-br from-primary-800 to-primary-600 text-white pt-24 pb-20'>
 					<div className='container-custom text-center'>
 						<h1 className='text-5xl md:text-6xl font-bold mb-6 text-gradient'>
 							Our Products
@@ -174,7 +174,7 @@ const Products = () => {
 									placeholder='Search products...'
 									value={searchTerm}
 									onChange={(e) => setSearchTerm(e.target.value)}
-									className='w-full px-6 py-3 pl-12 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent'
+									className='w-full px-6 py-3 pl-12 border border-gray-300 rounded-full bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent caret-primary-600'
 								/>
 								<div className='absolute left-4 top-1/2 transform -translate-y-1/2'>
 									<svg

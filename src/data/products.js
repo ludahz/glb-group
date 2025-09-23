@@ -8,7 +8,7 @@ export const foodItems = [
   {
   id: 2,
     title: 'Coffee',
-    img: '/images/product/coffee-cup.jpeg',
+    img: '/images/product/maman-africa-coffee.jpeg',
   description: 'Roasted coffee beans and ground blends',
   },
   {

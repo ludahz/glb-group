@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Team from '../components/Team'
 import teamData from '../data/team'
+import PageHero from '../components/PageHero'
 
 const About = () => {
 	return (
@@ -11,24 +12,18 @@ const About = () => {
 				<title>About Us - GL-B GROUP SARL</title>
 				<meta
 					name='description'
-					content='Learn about GL-B GROUP SARL, your trusted partner in international trade with over 10 years of experience in import, export, and business consultancy.'
+					content='Learn about GL-B GROUP SARL, your trusted partner in international trade since 2019, focused on imports and business consultancy.'
 				/>
 			</Head>
 
 			<div className='min-h-screen bg-gray-50'>
-				{/* Hero Section */}
-				<section className='bg-gradient-to-br from-blue-900 to-slate-800 text-white pt-24 pb-20'>
-					<div className='container-custom text-center'>
-						<h1 className='text-5xl md:text-6xl font-bold mb-6 text-gradient'>
-							About GL-B GROUP
-						</h1>
-						<div className='w-32 h-1 bg-primary-600 mx-auto rounded-full mb-8'></div>
-						<p className='text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed'>
-							Your trusted partner in international trade, connecting businesses
-							across borders since 2014.
-						</p>
-					</div>
-				</section>
+				<PageHero
+					title='About GL-B GROUP'
+					subtitle='Trusted Partner'
+					description='Your trusted partner in international trade, connecting businesses since 2019.'
+					variant='default'
+					breadcrumbs={[{ label: 'About' }]}
+				/>
 
 				{/* Company Story */}
 				<section className='section-padding bg-white'>
@@ -57,9 +52,9 @@ const About = () => {
 										Founded as a small business with big dreams, we have grown
 										into a trusted international trade partner, specializing in
 										the import of high-quality food products, modern
-										electronics, and industrial machinery, while also
-										facilitating the export of premium commodities including
-										gold, cotton, and agricultural products.
+										electronics, and industrial machinery. We currently focus on
+										the domestic market and imports, with plans to expand into
+										exports in the future.
 									</p>
 
 									<p>
@@ -85,27 +80,38 @@ const About = () => {
 								</div>
 
 								{/* Floating Stats */}
-								<div className='absolute -bottom-8 -left-8 bg-white rounded-xl shadow-lg p-6'>
-									<div className='text-center'>
-										<div className='text-3xl font-bold text-primary-600 mb-1'>
-											10+
-										</div>
-										<div className='text-sm text-gray-600'>
-											Years Experience
-										</div>
-									</div>
-								</div>
+								{(() => {
+									const START_YEAR = 2019
+									const yearsExperience = Math.max(
+										0,
+										new Date().getFullYear() - START_YEAR
+									)
+									return (
+										<>
+											<div className='absolute -bottom-8 -left-8 bg-white rounded-xl shadow-lg p-6'>
+												<div className='text-center'>
+													<div className='text-3xl font-bold text-primary-600 mb-1'>
+														{yearsExperience}+
+													</div>
+													<div className='text-sm text-gray-600'>
+														Years Experience
+													</div>
+												</div>
+											</div>
 
-								<div className='absolute -top-8 -right-8 bg-white rounded-xl shadow-lg p-6'>
-									<div className='text-center'>
-										<div className='text-3xl font-bold text-primary-300 mb-1'>
-											50+
-										</div>
-										<div className='text-sm text-gray-600'>
-											Countries Served
-										</div>
-									</div>
-								</div>
+											<div className='absolute -top-8 -right-8 bg-white rounded-xl shadow-lg p-6'>
+												<div className='text-center'>
+													<div className='text-3xl font-bold text-primary-300 mb-1'>
+														Mali
+													</div>
+													<div className='text-sm text-gray-600'>
+														Primary Market
+													</div>
+												</div>
+											</div>
+										</>
+									)
+								})()}
 							</div>
 						</div>
 					</div>

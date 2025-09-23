@@ -1,6 +1,7 @@
 import ServicesCard from './ServicesCard'
-import { AiOutlineImport, AiOutlineExport } from 'react-icons/ai'
+import { AiOutlineImport } from 'react-icons/ai'
 import { GrServices } from 'react-icons/gr'
+import { MdOutlineFlag } from 'react-icons/md'
 
 const servicesData = [
 	{
@@ -9,9 +10,9 @@ const servicesData = [
 		desc: 'We import food, electronics, and machinery from global markets to meet local demand.',
 	},
 	{
-		icon: <AiOutlineExport size='3rem' />,
-		title: 'EXPORT',
-		desc: 'We export gold, cotton, dried hibiscus and other commodities to international markets.',
+		icon: <MdOutlineFlag size='3rem' />,
+		title: 'EXPORT (Planned)',
+		desc: 'We are preparing to expand into exports in the future. For now, our focus is domestic market and imports.',
 	},
 	{
 		icon: <GrServices size='3rem' />,

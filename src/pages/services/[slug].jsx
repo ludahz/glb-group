@@ -27,7 +27,7 @@ export default function ServiceDetail({ service }) {
 			</Head>
 			<div className='min-h-screen bg-gray-50'>
 				{/* Hero */}
-				<section className='bg-gradient-to-br from-blue-900 to-slate-800 text-white py-16'>
+				<section className='bg-gradient-to-br from-primary-800 to-primary-600 text-white py-16'>
 					<div className='container-custom'>
 						<nav className='text-sm text-primary-100 mb-4'>
 							<Link href='/' className='hover:underline'>

@@ -14,6 +14,7 @@ import {
 	FaLinkedinIn,
 	FaInstagram,
 } from 'react-icons/fa'
+import PageHero from '../components/PageHero'
 
 const Contact = () => {
 	const router = useRouter()
@@ -79,19 +80,13 @@ const Contact = () => {
 			</Head>
 
 			<div className='min-h-screen bg-gray-50'>
-				{/* Hero Section */}
-				<section className='bg-gradient-to-br from-blue-900 to-slate-800 text-white pt-24 pb-20'>
-					<div className='container-custom text-center'>
-						<h1 className='text-5xl md:text-6xl font-bold mb-6 text-gradient'>
-							Contact Us
-						</h1>
-						<div className='w-32 h-1 bg-primary-600 mx-auto rounded-full mb-8'></div>
-						<p className='text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed'>
-							Ready to take your business global? Get in touch with our expert
-							team today.
-						</p>
-					</div>
-				</section>
+				<PageHero
+					title='Contact Us'
+					subtitle='Get In Touch'
+					description='Ready to take your business global? Get in touch with our expert team today.'
+					variant='particles'
+					breadcrumbs={[{ label: 'Contact' }]}
+				/>
 
 				{/* Contact Information Cards */}
 				<section className='py-16 bg-white'>
@@ -353,18 +348,18 @@ const Contact = () => {
 										Follow Us
 									</h3>
 									<div className='flex space-x-4'>
-										<div className='w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors cursor-pointer'>
+										<div className='w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center text-white hover:bg-primary-700 transition-colors cursor-pointer'>
 											<FaFacebookF />
 										</div>
-										<div className='w-12 h-12 bg-sky-500 rounded-full flex items-center justify-center text-white hover:bg-sky-600 transition-colors cursor-pointer'>
+										{/* <div className='w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center text-white hover:bg-primary-600 transition-colors cursor-pointer'>
 											<FaTwitter />
 										</div>
-										<div className='w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white hover:bg-blue-800 transition-colors cursor-pointer'>
+										<div className='w-12 h-12 bg-primary-700 rounded-full flex items-center justify-center text-white hover:bg-primary-800 transition-colors cursor-pointer'>
 											<FaLinkedinIn />
 										</div>
-										<div className='w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition-colors cursor-pointer'>
+										<div className='w-12 h-12 bg-secondary-600 rounded-full flex items-center justify-center text-white hover:bg-secondary-700 transition-colors cursor-pointer'>
 											<FaInstagram />
-										</div>
+										</div> */}
 									</div>
 								</div>
 
