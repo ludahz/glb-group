@@ -212,7 +212,7 @@ const Banner = ({ variant = 'classic' }) => {
 							style={{ animationDelay: '0.2s' }}
 						>
 							<span className='inline-block px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white/90 border border-white/20'>
-								🌍 International Trade Excellence
+								🌍 International Business Excellence
 							</span>
 						</div>
 
