@@ -41,16 +41,16 @@ const Contact = () => {
 			if (result.success) {
 				setSubmitStatus('success')
 				setFormData({ name: '', email: '', subject: '', message: '' })
-				// Auto-hide success message after 5 seconds
-				setTimeout(() => setSubmitStatus(''), 5000)
+				// Auto-hide success message after 30 seconds
+				setTimeout(() => setSubmitStatus(''), 30000)
 			} else {
 				setSubmitStatus('error')
-				setTimeout(() => setSubmitStatus(''), 5000)
+				setTimeout(() => setSubmitStatus(''), 30000)
 			}
 		} catch (error) {
 			console.error('Error sending message:', error)
 			setSubmitStatus('error')
-			setTimeout(() => setSubmitStatus(''), 5000)
+			setTimeout(() => setSubmitStatus(''), 30000)
 		} finally {
 			setIsSubmitting(false)
 		}

@@ -59,16 +59,15 @@ const Contact = () => {
 					subject: '',
 					message: '',
 				})
-				// Redirect to success page after 2 seconds
-				setTimeout(() => {
-					router.push('/messageSent')
-				}, 2000)
+				setTimeout(() => setSubmitStatus(''), 10000)
 			} else {
 				setSubmitStatus('error')
+				setTimeout(() => setSubmitStatus(''), 10000)
 			}
 		} catch (error) {
 			console.error('Error sending message:', error)
 			setSubmitStatus('error')
+			setTimeout(() => setSubmitStatus(''), 10000)
 		} finally {
 			setIsSubmitting(false)
 		}
@@ -80,7 +79,7 @@ const Contact = () => {
 				<title>Contact Us - GL-B GROUP SARL</title>
 				<meta
 					name='description'
-					content="Get in touch with GL-B GROUP SARL for all your international trade needs. We&apos;re here to help you expand your business globally."
+					content="Get in touch with GL-B GROUP SARL for all your international trade needs. We're here to help you expand your business globally."
 				/>
 			</Head>
 
@@ -296,8 +295,8 @@ const Contact = () => {
 												🚫 Oops! Something went wrong
 											</p>
 											<p className='mb-3'>
-												We couldn&apos;t send your message right now. Don&apos;t worry, we
-												still want to hear from you!
+												We couldn&apos;t send your message right now. Don&apos;t
+												worry, we still want to hear from you!
 											</p>
 											<p className='text-sm'>
 												Please try again, or reach out to us directly at{' '}
