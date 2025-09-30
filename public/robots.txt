@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Replace with your actual domain
+Sitemap: https://your-domain.com/sitemap.xml
+
+# Block sensitive areas (if any)
+# Disallow: /admin/
+# Disallow: /api/

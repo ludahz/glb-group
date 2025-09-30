@@ -15,8 +15,7 @@ export const services = [
     longDescription:
       'Trade facilitation involves a wide range of activities centered on lowering trade transaction costs for global commerce firms. These costs include the price of moving freight from the factory to final destinations. Firms must manage border clearance procedures and pay trade services fees, among many other steps after goods and services are produced. As such, trade facilitation involves much more than trucking goods across national borders or shipping a package by sea transport. As a consulting firm, it is our job to run by taking over these operations, leaving companies to focus on other more imperative and tenacious factors of running their business.',
     highlights: [
-      'Trusted supplier network across 20+ countries',
-      'Incoterms support (EXW, FOB, CIF, DDP)',
+      'Trusted supplier network across mali and beyond',
       'Customs clearance and regulatory guidance',
     ],
     steps: [
@@ -26,7 +25,7 @@ export const services = [
       'Logistics & delivery coordination',
     ],
     faqs: [
-      { q: 'Which Incoterms do you support?', a: 'We commonly operate under EXW, FOB, CIF, and DDP depending on destination and client preference.' },
+      // { q: 'Which Incoterms do you support?', a: 'We commonly operate under EXW, FOB, CIF, and DDP depending on destination and client preference.' },
       { q: 'Can you handle customs?', a: 'Yes, we manage documentation, brokerage coordination, and compliance checks.' },
     ],
   },
@@ -84,7 +83,7 @@ export const services = [
       'Evaluation & certification',
     ],
     faqs: [
-      { q: 'Do you offer certificates?', a: 'Yes, certificates are issued upon successful completion.' },
+      // { q: 'Do you offer certificates?', a: 'Yes, certificates are issued upon successful completion.' },
       { q: 'Can you customize the training?', a: 'Absolutely. We tailor modules to your industry, team size, and goals.' },
     ],
   },

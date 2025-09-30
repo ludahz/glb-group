@@ -1,7 +1,6 @@
 import Head from 'next/head'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import emailjs from 'emailjs-com'
 import {
 	IoLocationOutline,
 	IoCallOutline,
@@ -15,6 +14,7 @@ import {
 	FaInstagram,
 } from 'react-icons/fa'
 import PageHero from '../components/PageHero'
+import { sendEmail, mapFormDataToTemplate, initEmailJS } from '../utils/emailjs'
 
 const Contact = () => {
 	const router = useRouter()
@@ -29,6 +29,11 @@ const Contact = () => {
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const [submitStatus, setSubmitStatus] = useState('')
 
+	useEffect(() => {
+		// Initialize EmailJS when component mounts
+		initEmailJS()
+	}, [])
+
 	const handleChange = (e) => {
 		setFormData({
 			...formData,
@@ -42,13 +47,11 @@ const Contact = () => {
 		setSubmitStatus('')
 
 		try {
-			// You can configure EmailJS here or use your preferred form handling service
-			// await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData, 'YOUR_USER_ID')
+			const templateParams = mapFormDataToTemplate(formData)
+			const result = await sendEmail(templateParams)
 
-			// For now, we'll simulate a successful submission
-			setTimeout(() => {
+			if (result.success) {
 				setSubmitStatus('success')
-				setIsSubmitting(false)
 				setFormData({
 					name: '',
 					email: '',
@@ -61,10 +64,13 @@ const Contact = () => {
 				setTimeout(() => {
 					router.push('/messageSent')
 				}, 2000)
-			}, 1000)
+			} else {
+				setSubmitStatus('error')
+			}
 		} catch (error) {
 			console.error('Error sending message:', error)
 			setSubmitStatus('error')
+		} finally {
 			setIsSubmitting(false)
 		}
 	}
@@ -75,7 +81,7 @@ const Contact = () => {
 				<title>Contact Us - GL-B GROUP SARL</title>
 				<meta
 					name='description'
-					content="Get in touch with GL-B GROUP SARL for all your international trade needs. We're here to help you expand your business globally."
+					content="Get in touch with GL-B GROUP SARL for all your international trade needs. We&apos;re here to help you expand your business globally."
 				/>
 			</Head>
 
@@ -178,7 +184,7 @@ const Contact = () => {
 												value={formData.name}
 												onChange={handleChange}
 												required
-												className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200'
+												className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200 text-gray-900 bg-white'
 												placeholder='Your full name'
 											/>
 										</div>
@@ -197,7 +203,7 @@ const Contact = () => {
 												value={formData.email}
 												onChange={handleChange}
 												required
-												className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200'
+												className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200 text-gray-900 bg-white'
 												placeholder='your@email.com'
 											/>
 										</div>
@@ -217,7 +223,7 @@ const Contact = () => {
 												name='phone'
 												value={formData.phone}
 												onChange={handleChange}
-												className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200'
+												className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200 text-gray-900 bg-white'
 												placeholder='+1 (555) 123-4567'
 											/>
 										</div>
@@ -235,7 +241,7 @@ const Contact = () => {
 												name='company'
 												value={formData.company}
 												onChange={handleChange}
-												className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200'
+												className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200 text-gray-900 bg-white'
 												placeholder='Your company name'
 											/>
 										</div>
@@ -255,7 +261,7 @@ const Contact = () => {
 											value={formData.subject}
 											onChange={handleChange}
 											required
-											className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200'
+											className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200 text-gray-900 bg-white'
 											placeholder='What can we help you with?'
 										/>
 									</div>
@@ -274,7 +280,7 @@ const Contact = () => {
 											onChange={handleChange}
 											required
 											rows='6'
-											className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200 resize-vertical'
+											className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200 resize-vertical text-gray-900 bg-white'
 											placeholder='Tell us more about your project or inquiry...'
 										></textarea>
 									</div>
@@ -288,8 +294,24 @@ const Contact = () => {
 
 									{submitStatus === 'error' && (
 										<div className='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg'>
-											Sorry, there was an error sending your message. Please try
-											again.
+											<p className='font-semibold mb-2'>
+												🚫 Oops! Something went wrong
+											</p>
+											<p className='mb-3'>
+												We couldn&apos;t send your message right now. Don&apos;t worry, we
+												still want to hear from you!
+											</p>
+											<p className='text-sm'>
+												Please try again, or reach out to us directly at{' '}
+												<a
+													href='mailto:glbgroup10@gmail.com?subject=Contact%20Inquiry&body=Hello%20GL-B%20GROUP%20SARL,%0A%0A'
+													className='font-semibold text-primary-600 hover:text-primary-800 underline transition-colors duration-200'
+													title='Click to open your email client'
+												>
+													glbgroup10@gmail.com
+												</a>
+												📧
+											</p>
 										</div>
 									)}
 

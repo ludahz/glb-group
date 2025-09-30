@@ -2,8 +2,22 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 22+ (if using nvm: `nvm use`)
+- npm or yarn
 
+### Installation
+
+1. Install dependencies:
+```bash
+npm install
+```
+
+2. Set up environment variables:
+   - Copy `.env.example` to `.env.local`
+   - Configure your EmailJS credentials (see EmailJS Setup below)
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
@@ -11,6 +25,29 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## EmailJS Setup
+
+This project uses EmailJS for handling contact form submissions. To set it up:
+
+1. Go to [EmailJS](https://www.emailjs.com/) and create an account
+2. Create an email service (Gmail, Outlook, etc.)
+3. Create an email template with the following variables:
+   - `{{from_name}}` - sender's name
+   - `{{from_email}}` - sender's email
+   - `{{phone}}` - sender's phone (optional)
+   - `{{company}}` - sender's company (optional)
+   - `{{subject}}` - message subject
+   - `{{message}}` - message content
+   - `{{to_name}}` - recipient name (GL-B GROUP SARL)
+   - `{{to_email}}` - recipient email
+4. Get your Service ID, Template ID, and Public Key from EmailJS dashboard
+5. Update your `.env.local` file with these values:
+   ```
+   NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id  
+   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+   ```
 
 ### Node.js version
 
